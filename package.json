@@ -7,17 +7,17 @@
     "gulp": "^3.9.1"
   },
   "devDependencies": {
-    "autoprefixer": "^6.7.5",
+    "autoprefixer": "^6.7.7",
     "browser-sync": "^2.18.7",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-image": "^2.7.5",
     "gulp-postcss": "^6.3.0",
-    "gulp-pug": "^3.2.0",
+    "gulp-pug": "^3.3.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.4.1",
-    "gulp-uglify": "^2.0.1",
+    "gulp-uglify": "^2.1.0",
     "run-sequence": "^1.2.2"
   },
   "scripts": {
