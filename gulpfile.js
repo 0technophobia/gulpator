@@ -16,10 +16,10 @@ var image_path = 'assets/imgs', // your image path
     css_path   = 'assets/css', // your css path
     sass_path  = 'assets/sass', // your sass path
     js_path    = 'assets/js', // your js path
-    fonts_path = 'assets/fonts', // your fonts path
-    html_path  = '', // your html path
     pug_path   = 'assets/pug'; // your pug path
     php_path   = 'assets/php'; // your php path
+    fonts_path = 'assets/fonts', // your fonts path
+    html_path  = '', // your html path
 
 // creat project folders
 gulp.task('folders', function(){
@@ -78,14 +78,14 @@ gulp.task('image', function(){
 // js task
 gulp.task('js', function(){
   'use strict';
-   gulp
-      .src(js_path + '/*.js')
-      .pipe(sourcemaps.init())
-      .pipe(uglify())
-      .on('error', errorcheck)
-      .pipe(rename({suffix: '.min'}))
-      .pipe(sourcemaps.write())
-      .pipe(gulp.dest(js_path + '/min'));
+   return gulp
+            .src(js_path + '/*.js')
+            .pipe(sourcemaps.init())
+            .pipe(uglify())
+            .on('error', errorcheck)
+            .pipe(rename({suffix: '.min'}))
+            .pipe(sourcemaps.write())
+            .pipe(gulp.dest(js_path + '/min'));
 });
 
 
@@ -98,13 +98,13 @@ var pug0ptions = {
 // pug function
 gulp.task('pug', function(){
   'use strict';
-   gulp
-      .src(pug_path + '/*.pug')
-      .pipe(sourcemaps.init())
-      .pipe(pug(pug0ptions))
-      .on('error', errorcheck)
-      .pipe(sourcemaps.write())
-      .pipe(gulp.dest(html_path));
+   return gulp
+            .src(pug_path + '/*.pug')
+            .pipe(sourcemaps.init())
+            .pipe(pug(pug0ptions))
+            .on('error', errorcheck)
+            .pipe(sourcemaps.write())
+            .pipe(gulp.dest(html_path));
 });
 
 
@@ -120,7 +120,7 @@ var sassOptions = {
 // sass function
 gulp.task('sass', function() {
   'use strict';
-   gulp
+   return gulp
           .src(sass_path + '/*.sass')
           .pipe(sourcemaps.init())
           .pipe(sass(sassOptions).on('error', sass.logError)) // errorcheck
@@ -132,7 +132,7 @@ gulp.task('sass', function() {
 // scss function
 gulp.task('scss', function() {
   'use strict';
-    gulp
+    return gulp
           .src(sass_path + '/*.scss')
           .pipe(sourcemaps.init())
           .pipe(sass(sassOptions).on('error', sass.logError)) // errorcheck
@@ -155,6 +155,7 @@ gulp.task('server', function(){
   'use strict';
   browserSync.init({
     server: {baseDir: "./"},
+    injectChanges: true,
     port: 80,
     ui: {port: 80},
     logPrefix: "0technophobia",
@@ -170,11 +171,10 @@ gulp.task('server', function(){
 
 // start watch function
 function watch_folders() {
-  gulp.watch(js_path + '/*.js').on('change',function(){runSequence('js','reload');});
-  gulp.watch(pug_path  + '/**/*.pug',['pug']);
-  gulp.watch(sass_path + '/**/*.sass').on('change',function(){runSequence('sass','reload');});
-  gulp.watch(sass_path + '/**/*.scss').on('change',function(){runSequence('scss','reload');});
-  gulp.watch(html_path + '*.html',['reload']);
+  gulp.watch(js_path + '/*.js', function(){runSequence('js','reload');});
+  gulp.watch(pug_path  + '/**/*.pug', function(){runSequence('pug','reload');});
+  gulp.watch(sass_path + '/**/*.sass', function(){runSequence('sass','reload');});
+  gulp.watch(sass_path + '/**/*.scss', function(){runSequence('scss','reload');});
 }
 
 
