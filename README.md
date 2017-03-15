@@ -19,6 +19,8 @@ in the dist folder you will finde all you need.
 
 in my_files folder you could add all your frameworks like (bootstrap, jquery, ...)
 
+<hr>
+
 ## How to use it
 
 1- You can use it after installing node.js
@@ -33,6 +35,8 @@ You can find the latest node downlaod link <a href='https://nodejs.org/en/'>here
 
 3- run <code>npm i</code> and that it is.
 
+<hr>
+
 ### Notes:
 1- if you got a jpeg error just comment the second line of gulpfile.
 
@@ -40,6 +44,8 @@ You can find the latest node downlaod link <a href='https://nodejs.org/en/'>here
 2- you can run <code>npm outdated</code> to check if all the packages are up to date.
 
 3- if find any packages outdated just type <code>npm i -D "the package name"</code> and you are done.
+
+<hr>
 
 ## Licences 
 
