@@ -1,4 +1,4 @@
-# gulpator
+# Gulpator
 automate web designers work using gulp js
 
 ## version
@@ -12,29 +12,33 @@ after installing node.js
 ## what includes
 in the dist folder you will finde all you need.
 
-<code>
-|
+<pre>
+
 |_ gulpfile.js
 |
 |_ package.json
 |
 |_my_files
-</code>
+</pre>
 
 in my_files folder you could add all your frameworks like (bootstrap, jquery, ...)
 
-## how to use it
+## How to use it
+
 1- Just copy all the content of the dist folder into your project folder.
 
 2- open the termenal and make the directory to the project folder.
+
 3- run <code>npm i</code> and that it is.
 
-# note that:
+### Notes:
 1- if you got a jpeg error just comment the second line of gulpfile.
 
 
 2- you can run <code>npm outdated</code> to check if all the packages are up to date.
+
 3- if find any packages outdated just type <code>npm i -D "the package name"</code> and you are done.
 
-#Licences 
+## Licences 
+
 this project is licenced to <a href='https://github.com/0technophobia/gulpator/blob/master/LICENSE.md'>0technophobia 2017 under the MIT</a>.
