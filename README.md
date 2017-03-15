@@ -4,16 +4,12 @@ automate web designers work using gulp js
 ## version
 beta version number 1.0.1
 
-You can use it after installing node.js
-You can find the latest node downlaod link <a href='https://nodejs.org/en/'>here</a>
-
-after installing node.js
+<hr>
 
 ## what includes
 in the dist folder you will finde all you need.
 
 <pre>
-
 |_ gulpfile.js
 |
 |_ package.json
@@ -24,6 +20,12 @@ in the dist folder you will finde all you need.
 in my_files folder you could add all your frameworks like (bootstrap, jquery, ...)
 
 ## How to use it
+
+1- You can use it after installing node.js
+
+You can find the latest node downlaod link <a href='https://nodejs.org/en/'>here</a>
+
+### After Installing Node.js
 
 1- Just copy all the content of the dist folder into your project folder.
 
