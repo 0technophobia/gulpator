@@ -12,11 +12,11 @@ beta version number 1.2.0
 in the dist folder you will finde all you need.
 
 <pre>
-|_ gulpfile.js
+├── gulpfile.js
 |
-|_ package.json
+├── package.json
 |
-|_ my_files/
+└── my_files/
 </pre>
 
 in my_files folder you could add all your frameworks like (bootstrap, jquery, ...)
@@ -49,6 +49,9 @@ You can find the latest node downlaod link [here](https://nodejs.org/en/)
 
 ****
 
-## Licences 
+## Copyright and license
 
-this project is licenced to [zogorn 2017 under the MIT](https://github.com/zogorn/gulpator/blob/master/LICENSE.md).
+Copyright (C) 2017 zogorn. Code released under dual license, [the MIT license](https://github.com/zogorn/gulpator/blob/master/LICENSE.md) with the below notice.
+
+You have full freedom in the use of this product in any purpose but is not contrary to the teachings  
+mentioned in [The Holy Quran](http://quran.ksu.edu.sa/index.php?l=en#aya=1_1&m=hafs&qaree=husary&trans=en_sh).
