@@ -4,7 +4,7 @@ automate web designers work using gulp js
 
 ## version
 
-beta version number 1.0.1
+beta version number 1.2.0
 
 ****
 
