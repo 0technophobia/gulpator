@@ -1,25 +1,26 @@
-var gulp         = require('gulp'), // gulp lib
-    image        = require('gulp-image'), // compress images -> comment if error
-    rename       = require('gulp-rename'), // rename files
-    uglify       = require('gulp-uglify'), // compress js
-    autoprefixer = require('autoprefixer'), // add prefix to css
-    sourcemaps   = require('gulp-sourcemaps'), // make source maps
-    postcss      = require('gulp-postcss'), // autoprefixer deb
-    pug          = require('gulp-pug'), // compile pug
-    sass         = require('gulp-sass'), // compile sass
-    del          = require('del'), // delete folders and files
-    runSequence  = require('run-sequence'), // run tasks in series
-    browserSync  = require('browser-sync').create(); // another browser refresh for linux
+var gulp         = require('gulp'),                     // gulp lib
+    image        = require('gulp-image'),               // compress images -> comment if error
+    rename       = require('gulp-rename'),              // rename files
+    uglify       = require('gulp-uglify'),              // compress js
+    autoprefixer = require('autoprefixer'),             // add prefix to css
+    sourcemaps   = require('gulp-sourcemaps'),          // make source maps
+    postcss      = require('gulp-postcss'),             // autoprefixer deb
+    pug          = require('gulp-pug'),                 // compile pug
+    sass         = require('gulp-sass'),                // compile sass
+    del          = require('del'),                      // delete folders and files
+    runSequence  = require('run-sequence'),             // run tasks in series
+    browserSync  = require('browser-sync').create();    // another browser refresh for linux
+var css0         = require('gulp-csso');                // min the css files
 
 // paths
-var image_path = 'assets/imgs', // your image path
-    css_path   = 'assets/css', // your css path
-    sass_path  = 'assets/sass', // your sass path
-    js_path    = 'assets/js', // your js path
-    pug_path   = 'assets/pug'; // your pug path
-    php_path   = 'assets/php'; // your php path
-    fonts_path = 'assets/fonts', // your fonts path
-    html_path  = '', // your html path
+var image_path = 'assets/images',   // your image path
+    css_path   = 'assets/css',      // your css path
+    sass_path  = 'assets/sass',     // your sass path
+    js_path    = 'assets/js',       // your js path
+    pug_path   = 'assets/pug';      // your pug path
+    php_path   = 'assets/php';      // your php path
+    fonts_path = 'assets/fonts',    // your fonts path
+    html_path  = '';                // your html path
 
 // creat project folders
 gulp.task('folders', function(){
@@ -60,8 +61,7 @@ gulp.task('copy', function() {
 
 // keep watch running after errors
 function errorcheck(err) {
-  'use strict';
-  console.error(err);
+  console.log(error.toString());
   this.emit('end');
 }
 
@@ -77,15 +77,15 @@ gulp.task('image', function(){
 
 // js task
 gulp.task('js', function(){
-  'use strict';
-   return gulp
-            .src(js_path + '/*.js')
-            .pipe(sourcemaps.init())
-            .pipe(uglify())
-            .on('error', errorcheck)
-            .pipe(rename({suffix: '.min'}))
-            .pipe(sourcemaps.write())
-            .pipe(gulp.dest(js_path + '/min'));
+   'use strict';
+   gulp
+      .src(js_path + '/*.js')
+      .pipe(sourcemaps.init())
+      .pipe(uglify())
+      .on('error', errorcheck)
+      .pipe(rename({suffix: '.min'}))
+      .pipe(sourcemaps.write('./maps'))
+      .pipe(gulp.dest(js_path + '/min'));
 });
 
 
@@ -98,13 +98,13 @@ var pug0ptions = {
 // pug function
 gulp.task('pug', function(){
   'use strict';
-   return gulp
-            .src(pug_path + '/*.pug')
-            .pipe(sourcemaps.init())
-            .pipe(pug(pug0ptions))
-            .on('error', errorcheck)
-            .pipe(sourcemaps.write())
-            .pipe(gulp.dest(html_path));
+  return gulp
+    .src(pug_path + '/*.pug')
+    .pipe(sourcemaps.init())
+    .pipe(pug(pug0ptions))
+    .on('error', errorcheck)
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(html_path));
 });
 
 
@@ -120,26 +120,28 @@ var sassOptions = {
 // sass function
 gulp.task('sass', function() {
   'use strict';
-   return gulp
-          .src(sass_path + '/*.sass')
-          .pipe(sourcemaps.init())
-          .pipe(sass(sassOptions).on('error', sass.logError)) // errorcheck
-          .pipe(postcss([autoprefixer({browsers:['last 20 versions', 'IE 7']})]))
-          .pipe(rename({suffix: '.min'}))
-          .pipe(sourcemaps.write())
-          .pipe(gulp.dest(css_path));
+  return gulp
+    .src(sass_path + '/*.sass')
+    .pipe(sourcemaps.init())
+    .pipe(sass(sassOptions).on('error', sass.logError)) // errorcheck
+    .pipe(postcss([autoprefixer({browsers:['last 10 versions', 'IE 8']})]))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(css0())
+    .pipe(sourcemaps.write('./maps'))
+    .pipe(gulp.dest(css_path));
 });
 // scss function
 gulp.task('scss', function() {
   'use strict';
-    return gulp
-          .src(sass_path + '/*.scss')
-          .pipe(sourcemaps.init())
-          .pipe(sass(sassOptions).on('error', sass.logError)) // errorcheck
-          .pipe(postcss([autoprefixer({browsers:['last 20 versions', 'IE 6']})]))
-          .pipe(rename({suffix: '.min'}))
-          .pipe(sourcemaps.write())
-          .pipe(gulp.dest(css_path));
+  return gulp
+    .src(sass_path + '/*.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass(sassOptions).on('error', sass.logError)) // errorcheck
+    .pipe(postcss([autoprefixer({browsers:['last 10 versions', 'IE 8']})]))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(css0())
+    .pipe(sourcemaps.write('./maps'))
+    .pipe(gulp.dest(css_path));
 });
 
 
@@ -154,11 +156,14 @@ gulp.task('reload', function(done){
 gulp.task('server', function(){
   'use strict';
   browserSync.init({
+    // coment server if you want to make the server from your current dir
     server: {baseDir: "./"},
+    // uncoment proxy if you want to work with xampp server ('localhost' => is the URL of your xampp server)
+//     proxy: 'localhost',
     injectChanges: true,
     port: 80,
     ui: {port: 80},
-    logPrefix: "0technophobia",
+    logPrefix: "zogorn",
     notify: {
       styles: {
         top: 'auto',
@@ -171,10 +176,12 @@ gulp.task('server', function(){
 
 // start watch function
 function watch_folders() {
-  gulp.watch(js_path + '/*.js', function(){runSequence('js','reload');});
-  gulp.watch(pug_path  + '/**/*.pug', function(){runSequence('pug','reload');});
-  gulp.watch(sass_path + '/**/*.sass', function(){runSequence('sass','reload');});
-  gulp.watch(sass_path + '/**/*.scss', function(){runSequence('scss','reload');});
+   // gulp.watch('*.php', ['reload']); // uncoment to watch php files
+   // gulp.watch('*.html', ['reload']);// uncoment to watch HTML files
+   gulp.watch(js_path + '/*.js', function(){runSequence('js','reload');});
+   gulp.watch(pug_path  + '/**/*.pug', function(){runSequence('pug','reload');});
+   gulp.watch(sass_path + '/**/*.sass', function(){runSequence('sass','reload');});
+   gulp.watch(sass_path + '/**/*.scss', function(){runSequence('scss','reload');});
 }
 
 
