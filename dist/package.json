@@ -1,32 +1,34 @@
 {
   "name": "gulpator",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "some gulp tools and plugins to automate basic web design everyday tasks",
   "main": "gulpfile.js",
   "dependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^*"
   },
   "devDependencies": {
-    "autoprefixer": "^6.7.7",
-    "browser-sync": "^2.18.7",
-    "del": "^2.2.2",
-    "gulp": "^3.9.1",
-    "gulp-image": "^2.7.5",
-    "gulp-postcss": "^6.3.0",
-    "gulp-pug": "^3.3.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0",
-    "gulp-sourcemaps": "^2.4.1",
-    "gulp-uglify": "^2.1.0",
-    "run-sequence": "^1.2.2"
+    "autoprefixer": "^*",
+    "browser-sync": "^*",
+    "del": "^*",
+    "gulp": "^*",
+    "gulp-csso": "^*",
+    "gulp-image": "^*",
+    "gulp-postcss": "^*",
+    "gulp-pug": "^*",
+    "gulp-rename": "^*",
+    "gulp-sass": "^*",
+    "gulp-sourcemaps": "^*",
+    "gulp-uglify": "^*",
+    "node-sass": "^*",
+    "run-sequence": "^*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "0technophobia",
+  "author": "zogorn",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/0technophobia/gulpator.git"
+    "url": "https://github.com/zogorn/gulpator.git"
   }
 }
